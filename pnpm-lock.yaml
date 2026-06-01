@@ -1,0 +1,23 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .: {}
+
+  packages/adapters: {}
+
+  packages/core: {}
+
+  packages/eval: {}
+
+  packages/indexing: {}
+
+  packages/observability: {}
+
+  packages/runtime: {}
+
+  packages/utils: {}

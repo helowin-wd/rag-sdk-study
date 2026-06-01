@@ -1,0 +1,9 @@
+# RAG SDK - Project Rules
+
+This is a monorepo managed by pnpm workspaces.
+All packages are under `packages/`.
+
+## Tech Stack
+- pnpm + workspace
+- TypeScript
+- No external dependencies at this stage
