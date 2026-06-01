@@ -1,9 +1,38 @@
-# RAG SDK - Project Rules
+# RAG SDK - 项目规则
 
-This is a monorepo managed by pnpm workspaces.
-All packages are under `packages/`.
+这是一个使用 pnpm workspaces 管理的 monorepo 项目。
+所有包位于 `packages/` 目录下。
 
-## Tech Stack
+## 文档索引
+
+详细文档请查阅 `docs/` 目录：
+
+| 文档 | 路径 |
+|----------|------|
+| 项目背景 | `docs/context/PROJECT_CONTEXT.md` |
+| 架构说明 | `docs/architecture/ARCHITECTURE.md` |
+| SDK 概述 | `docs/sdk/OVERVIEW.md` |
+| 流水线 | `docs/pipeline/PIPELINE.md` |
+| 提示词 | `docs/prompts/PROMPTS.md` |
+| 索引 | `docs/indexing/OVERVIEW.md` |
+| 评估 | `docs/eval/OVERVIEW.md` |
+| 可观测性 | `docs/observability/OVERVIEW.md` |
+| 示例 | `docs/examples/EXAMPLES.md` |
+| 架构决策 | `docs/decisions/ADR-001-初始架构.md` |
+
+## 技术栈
+
 - pnpm + workspace
-- TypeScript
-- No external dependencies at this stage
+- TypeScript（ESM，严格模式）
+- 现阶段无外部依赖
+
+## 依赖管理策略
+
+遵循 **"谁使用，谁声明"** 原则：
+
+1. **开发工具装根目录**：TypeScript、ESLint、Prettier、Vitest、tsup 等装在根 `devDependencies`，使用 `pnpm add <pkg> -w -D`
+2. **运行时依赖装子包**：Zod、openai、lodash-es 等装在具体使用它的子包 `dependencies` 中，使用 `pnpm --filter <package> add <pkg>`
+3. **内部包引用用 workspace 协议**：`pnpm --filter <package> add @rag-sdk/<dep>@workspace:*`
+4. **不允许幽灵依赖**：子包不能访问未在其 `package.json` 中声明的依赖
+
+详细说明见 `docs/sdk/OVERVIEW.md` → 依赖管理策略
